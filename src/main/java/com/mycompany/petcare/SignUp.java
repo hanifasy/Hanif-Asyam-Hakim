@@ -38,7 +38,6 @@ public class SignUp extends javax.swing.JPanel {
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Sign Up");
-        jLabel1.setFocusTraversalPolicy(null);
 
         jLabel2.setText("Username");
 
@@ -47,6 +46,11 @@ public class SignUp extends javax.swing.JPanel {
         jLabel4.setText("Sudah punya akun?");
 
         jButton2.setText("Sign Up");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jButton1.setText("Login");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -115,44 +119,7 @@ public class SignUp extends javax.swing.JPanel {
 
         jLabel1.getAccessibleContext().setAccessibleDescription("");
     }// </editor-fold>//GEN-END:initComponents
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {                                         
-        String username = jTextField1.getText().trim();
-        String password = jTextField2.getText().trim();
 
-        // Validasi input
-        if (username.isEmpty() || password.isEmpty()) {
-            javax.swing.JOptionPane.showMessageDialog(this, "Username dan Password tidak boleh kosong!");
-            return;
-        }
-
-        org.hibernate.Transaction transaction = null;
-
-        // Membuka Session Hibernate
-        try (org.hibernate.Session session = HibernateUtil.getSessionFactory().openSession()) {
-            transaction = session.beginTransaction();
-
-            // Membuat objek User dari data yang diisi di form
-            User newUser = new User(username, password);
-
-            // Menyimpan data ke database via Hibernate
-            session.persist(newUser);
-
-            // Commit transaksi
-            transaction.commit();
-
-            javax.swing.JOptionPane.showMessageDialog(this, "Registrasi akun berhasil!");
-
-            // Reset input field
-            jTextField1.setText("");
-            jTextField2.setText("");
-
-        } catch (Exception e) {
-            if (transaction != null) {
-                transaction.rollback();
-            }
-            javax.swing.JOptionPane.showMessageDialog(this, "Gagal mendaftar: " + e.getMessage());
-        }
-    }
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         javax.swing.JFrame frame = new javax.swing.JFrame("Login");
             frame.setDefaultCloseOperation(javax.swing.JFrame.EXIT_ON_CLOSE);
@@ -168,6 +135,47 @@ public class SignUp extends javax.swing.JPanel {
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        String username = jTextField1.getText().trim();
+        String password = jTextField2.getText().trim();
+
+        if (username.isEmpty() || password.isEmpty()) {
+            javax.swing.JOptionPane.showMessageDialog(this, "Username dan password wajib diisi!");
+            return;
+        }
+
+        org.hibernate.Transaction transaction = null;
+
+        try (org.hibernate.Session session = HibernateUtil.getSessionFactory().openSession()) {
+            transaction = session.beginTransaction();
+
+            User newUser = new User();
+            newUser.setUsername(username);
+            newUser.setPassword(password);
+
+            session.persist(newUser);
+            transaction.commit();
+
+            javax.swing.JOptionPane.showMessageDialog(this, "Registrasi akun berhasil!");
+
+            // Pindah ke Form Login
+            javax.swing.JFrame frame = new javax.swing.JFrame("Login");
+            frame.setDefaultCloseOperation(javax.swing.JFrame.EXIT_ON_CLOSE);
+            frame.setContentPane(new LoginForm());
+            frame.pack();
+            frame.setLocationRelativeTo(null);
+            frame.setVisible(true);
+
+            javax.swing.SwingUtilities.getWindowAncestor(this).dispose();
+
+        } catch (Exception e) {
+            if (transaction != null) {
+                transaction.rollback();
+            }
+            javax.swing.JOptionPane.showMessageDialog(this, "Gagal mendaftar: " + e.getMessage());
+        }        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton2ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
