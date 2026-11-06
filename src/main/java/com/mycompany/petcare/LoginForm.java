@@ -113,8 +113,8 @@ public class LoginForm extends javax.swing.JPanel {
     }//GEN-LAST:event_jTextField2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-String username = txtUsername.getText().trim();
-String password = txtPassword.getText().trim();
+String username = jTextField1.getText().trim();
+String password = jTextField2.getText().trim();
 
 if (username.isEmpty() || password.isEmpty()) {
     javax.swing.JOptionPane.showMessageDialog(
@@ -137,6 +137,10 @@ try (
     
     try (ResultSet rs = ps.executeQuery()) {
         if (rs.next()) {
+            javax.swing.JOptionPane.showMessageDialog(
+            this, "Login Berhasil"
+            );
+        } else {
             javax.swing.JOptionPane.showMessageDialog(
             this, "Ussername atau password salah!"
             );
