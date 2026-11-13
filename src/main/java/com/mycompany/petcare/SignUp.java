@@ -164,7 +164,7 @@ public class SignUp extends javax.swing.JPanel {
             User newUser = new User(username, password);
             userDAO.saveUser(newUser);
 
-            javax.swing.JOptionPane.showMessageDialog(this, "Registrasi akun berhasil via Spring DAO!");
+            javax.swing.JOptionPane.showMessageDialog(this, "Registrasi akun berhasil!");
 
             // Pindah ke Form Login
             javax.swing.JFrame frame = new javax.swing.JFrame("Login");
