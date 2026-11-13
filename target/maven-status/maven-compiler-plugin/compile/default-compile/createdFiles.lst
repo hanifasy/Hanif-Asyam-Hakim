@@ -2,6 +2,7 @@ com\mycompany\petcare\SignUp$3.class
 LayananPetCare.class
 com\mycompany\petcare\LoginForm$1.class
 com\mycompany\petcare\LoginForm$2.class
+com\mycompany\petcare\SignUp$4.class
 Hewan.class
 com\mycompany\petcare\LoginForm$3.class
 com\mycompany\petcare\Main.class
@@ -11,7 +12,10 @@ LayananGrooming.class
 MainPetCare.class
 com\mycompany\petcare\SignUp$1.class
 com\mycompany\petcare\User.class
+com\mycompany\petcare\UserDAOImpl.class
 com\mycompany\petcare\LoginForm$4.class
 LayananPenitipan.class
 com\mycompany\petcare\SignUp.class
 com\mycompany\petcare\SignUp$2.class
+com\mycompany\petcare\AppConfig.class
+com\mycompany\petcare\UserDAO.class

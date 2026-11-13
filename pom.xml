@@ -27,5 +27,19 @@
             <artifactId>hibernate-core</artifactId>
             <version>6.5.2.Final</version>
         </dependency>
+
+        <!-- Spring Context (Untuk IoC Container & Dependency Injection) -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context</artifactId>
+            <version>6.1.14</version>
+        </dependency>
+
+        <!-- Spring ORM (Untuk Spring DAO & Integrasi Hibernate) -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-orm</artifactId>
+            <version>6.1.14</version>
+        </dependency>
     </dependencies>
 </project>

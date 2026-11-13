@@ -3,7 +3,8 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
 package com.mycompany.petcare;
-
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 /**
  *
  * @author user
@@ -59,14 +60,17 @@ public class SignUp extends javax.swing.JPanel {
             }
         });
 
-        jTextField1.setText("jTextField1");
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField1ActionPerformed(evt);
             }
         });
 
-        jTextField2.setText("jTextField2");
+        jTextField2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -145,19 +149,18 @@ public class SignUp extends javax.swing.JPanel {
             return;
         }
 
-        org.hibernate.Transaction transaction = null;
+        try {
+            // Memuat Spring IoC Container
+            ApplicationContext context = new AnnotationConfigApplicationContext(AppConfig.class);
+            
+            // Mengambil bean UserDAO yang dikelola oleh Spring
+            UserDAO userDAO = context.getBean(UserDAO.class);
 
-        try (org.hibernate.Session session = HibernateUtil.getSessionFactory().openSession()) {
-            transaction = session.beginTransaction();
+            // Menyimpan user baru melalui Spring DAO
+            User newUser = new User(username, password);
+            userDAO.saveUser(newUser);
 
-            User newUser = new User();
-            newUser.setUsername(username);
-            newUser.setPassword(password);
-
-            session.persist(newUser);
-            transaction.commit();
-
-            javax.swing.JOptionPane.showMessageDialog(this, "Registrasi akun berhasil!");
+            javax.swing.JOptionPane.showMessageDialog(this, "Registrasi akun berhasil via Spring DAO!");
 
             // Pindah ke Form Login
             javax.swing.JFrame frame = new javax.swing.JFrame("Login");
@@ -170,12 +173,13 @@ public class SignUp extends javax.swing.JPanel {
             javax.swing.SwingUtilities.getWindowAncestor(this).dispose();
 
         } catch (Exception e) {
-            if (transaction != null) {
-                transaction.rollback();
-            }
             javax.swing.JOptionPane.showMessageDialog(this, "Gagal mendaftar: " + e.getMessage());
-        }        // TODO add your handling code here:
+        }    // TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField2ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
