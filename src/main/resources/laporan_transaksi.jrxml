@@ -73,7 +73,7 @@
 				<textElement textAlignment="Center">
 					<font size="14" isBold="true"/>
 				</textElement>
-				<text><![CDATA[id_transaksi]]></text>
+				<text><![CDATA[ID]]></text>
 			</staticText>
 			<staticText>
 				<reportElement mode="Opaque" x="79" y="0" width="79" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="4559b079-947f-49dd-a126-95585b6d38b1">
@@ -82,7 +82,7 @@
 				<textElement textAlignment="Center">
 					<font size="14" isBold="true"/>
 				</textElement>
-				<text><![CDATA[nama_hewan]]></text>
+				<text><![CDATA[Nama Hewan]]></text>
 			</staticText>
 			<staticText>
 				<reportElement mode="Opaque" x="158" y="0" width="79" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="8e77bc7d-b2b2-41a9-9172-969751760ee1">
@@ -91,7 +91,7 @@
 				<textElement textAlignment="Center">
 					<font size="14" isBold="true"/>
 				</textElement>
-				<text><![CDATA[jenis_hewan]]></text>
+				<text><![CDATA[Jenis]]></text>
 			</staticText>
 			<staticText>
 				<reportElement mode="Opaque" x="237" y="0" width="79" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="5874fe11-09d0-473c-8291-50a5b172a9c3">
@@ -100,7 +100,7 @@
 				<textElement textAlignment="Center">
 					<font size="14" isBold="true"/>
 				</textElement>
-				<text><![CDATA[catatan_khusus]]></text>
+				<text><![CDATA[Catatan]]></text>
 			</staticText>
 			<staticText>
 				<reportElement mode="Opaque" x="316" y="0" width="79" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="f26c28d1-1737-4069-940b-6a6df0606a27">
@@ -109,7 +109,7 @@
 				<textElement textAlignment="Center">
 					<font size="14" isBold="true"/>
 				</textElement>
-				<text><![CDATA[jenis_layanan]]></text>
+				<text><![CDATA[Layanan]]></text>
 			</staticText>
 			<staticText>
 				<reportElement mode="Opaque" x="395" y="0" width="79" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="864c6c5d-6ce9-4862-8e4b-8e22ce7da7b3">
@@ -118,7 +118,7 @@
 				<textElement textAlignment="Center">
 					<font size="14" isBold="true"/>
 				</textElement>
-				<text><![CDATA[detail_layanan]]></text>
+				<text><![CDATA[Detail]]></text>
 			</staticText>
 			<staticText>
 				<reportElement mode="Opaque" x="474" y="0" width="79" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="2ed26c52-9804-422a-a051-49a4431c6bc7">
@@ -127,7 +127,7 @@
 				<textElement textAlignment="Center">
 					<font size="14" isBold="true"/>
 				</textElement>
-				<text><![CDATA[total_biaya]]></text>
+				<text><![CDATA[Total Biaya]]></text>
 			</staticText>
 		</band>
 	</columnHeader>
