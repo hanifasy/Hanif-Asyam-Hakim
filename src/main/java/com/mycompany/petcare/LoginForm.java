@@ -123,43 +123,51 @@ public class LoginForm extends javax.swing.JPanel {
     }//GEN-LAST:event_jTextField2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-String username = jTextField1.getText().trim();
-String password = jTextField2.getText().trim();
+        String username = jTextField1.getText().trim();
+        String password = jTextField2.getText().trim();
 
-if (username.isEmpty() || password.isEmpty()) {
-    javax.swing.JOptionPane.showMessageDialog(
-            this, "username dan password wajib diisi!"
-    );
-    return;
-}
-
-String url = "jdbc:mysql://localhost:3306/petcare";
-
-try (
-        java.sql.Connection conn = 
-                java.sql.DriverManager.getConnection(url, "root", "");
-        
-        java.sql.PreparedStatement ps = conn.prepareStatement("SELECT * FROM login WHERE username = ? AND password = ?"
-        )
-) {
-    ps.setString(1, username);
-    ps.setString(2, password);
-    
-    try (ResultSet rs = ps.executeQuery()) {
-        if (rs.next()) {
+        if (username.isEmpty() || password.isEmpty()) {
             javax.swing.JOptionPane.showMessageDialog(
-            this, "Login Berhasil"
+                    this, "username dan password wajib diisi!"
             );
-        } else {
-            javax.swing.JOptionPane.showMessageDialog(
-            this, "Ussername atau password salah!"
+            return;
+        }
+
+        String url = "jdbc:mysql://localhost:3306/petcare";
+
+        try (
+                java.sql.Connection conn
+                = java.sql.DriverManager.getConnection(url, "root", ""); java.sql.PreparedStatement ps = conn.prepareStatement("SELECT * FROM login WHERE username = ? AND password = ?"
+        )) {
+            ps.setString(1, username);
+            ps.setString(2, password);
+
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) {
+                    javax.swing.JOptionPane.showMessageDialog(
+                            this, "Login Berhasil"
+                    );
+
+                    // Pindah ke Form Transaksi Admin
+                    javax.swing.JFrame frame = new javax.swing.JFrame("Admin PetCare - Transaksi");
+                    frame.setDefaultCloseOperation(javax.swing.JFrame.EXIT_ON_CLOSE);
+                    frame.setContentPane(new TransaksiForm());
+                    frame.pack();
+                    frame.setLocationRelativeTo(null);
+                    frame.setVisible(true);
+
+                    // Tutup jendela Login saat ini
+                    javax.swing.SwingUtilities.getWindowAncestor(this).dispose();
+                } else {
+                    javax.swing.JOptionPane.showMessageDialog(
+                            this, "Ussername atau password salah!"
+                    );
+                }
+            }
+        } catch (java.sql.SQLException e) {
+            javax.swing.JOptionPane.showMessageDialog(this, "Koneksi database gagal: " + e.getMessage()
             );
         }
-    }
-} catch (java.sql.SQLException e) {
-    javax.swing.JOptionPane.showMessageDialog(this, "Koneksi database gagal: " + e.getMessage()
-    );
-}
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed

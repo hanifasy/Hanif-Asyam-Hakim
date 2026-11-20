@@ -20,7 +20,8 @@
         <!-- Update skema tabel otomatis -->
         <property name="hbm2ddl.auto">update</property>
 
-        <!-- Daftarkan Class Entitas User -->
+        <!-- Daftarkan Class Entitas User & Transaksi -->
         <mapping class="com.mycompany.petcare.User"/>
+        <mapping class="com.mycompany.petcare.Transaksi"/>
     </session-factory>
 </hibernate-configuration>
